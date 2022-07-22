@@ -2,6 +2,11 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-}
 
-module.exports = nextConfig
+  images: {
+    domains: ["antojandoando.com"],
+    formats: ["image/webp"],
+  },
+};
+
+module.exports = nextConfig;

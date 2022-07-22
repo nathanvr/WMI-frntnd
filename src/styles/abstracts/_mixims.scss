@@ -1,0 +1,7 @@
+$small: 300px;
+$medium: 900px;
+
+@mixin nav-bar-button() {
+  background-color: white;
+  border: none;
+}

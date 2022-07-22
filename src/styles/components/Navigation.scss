@@ -1,0 +1,18 @@
+.navBar {
+  display: flex;
+  justify-content: flex-end;
+
+  li {
+    padding: 10px;
+    a {
+      color: var(--typo);
+    }
+  }
+
+  .navBar__login,
+  .navBar__register {
+    button {
+      @include nav-bar-button;
+    }
+  }
+}
