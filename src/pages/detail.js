@@ -1,7 +1,12 @@
 import React from "react";
+import Layout from "../components/Layout";
 
 const Detail = () => {
-  return <h1>Detail</h1>;
+  return (
+    <Layout>
+      <h1>Detail</h1>
+    </Layout>
+  );
 };
 
 export default Detail;

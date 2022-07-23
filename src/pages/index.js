@@ -7,8 +7,6 @@ import ProductCard from "../components/ProductCard";
 import Link from "next/link";
 
 export default function Index() {
-  const handleClick = (id) => {};
-
   const dispatch = useDispatch();
   const { loading, error, products } = useSelector(
     (state) => state.productsReducer
@@ -17,7 +15,6 @@ export default function Index() {
   useEffect(() => {
     dispatch(getProducts());
   }, [dispatch]);
-  console.log("data desde el product reducer", loading, error, products);
 
   if (error === true) {
     return <p>Lo sentimos, ha ocurrido un error. {error}</p>;
@@ -35,7 +32,8 @@ export default function Index() {
         {products.map((product, index) => (
           <Link
             key={product._id}
-            href={{ pathname: "/", query: { id: product._id } }}
+            href="/products/[productId]"
+            as={`/products/${product._id}`}
           >
             <a>
               <ProductCard product={product} />
