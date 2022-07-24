@@ -30,6 +30,45 @@ export const getUser = () => {
   };
 };
 
+export const register = (registerState) => {
+  return async (dispatch) => {
+    try {
+      const res = await axios.post(
+        "http://localhost:8080/user/signup",
+        registerState
+      );
+      //   console.log(res.data.data.token);
+      localStorage.setItem("token", res.data.data.token);
+      dispatch({ type: AUTH_SUCCESS });
+      dispatch(getUser());
+    } catch (error) {
+      dispatch({ type: AUTH_ERROR, payload: error });
+    }
+  };
+};
+
+export const login = (loginState) => {
+  return async (dispatch) => {
+    try {
+      const res = await axios.post(
+        "http://localhost:8080/user/signin",
+        loginState
+      );
+      localStorage.setItem("token", res.data.data);
+      dispatch({ type: AUTH_SUCCESS });
+      dispatch(getUser());
+    } catch (error) {
+      dispatch({ type: AUTH_ERROR, payload: error });
+    }
+  };
+};
+
+export const logout = () => {
+  return {
+    type: USER_LOGOUT,
+  };
+};
+
 const initialState = {
   auth: false,
   user: {},
@@ -43,6 +82,26 @@ const userReducer = (state = initialState, action) => {
         ...state,
         auth: true,
         user: action.payload,
+      };
+
+    case AUTH_SUCCESS:
+      return {
+        ...state,
+        auth: true,
+        user: action.payload,
+      };
+
+    case AUTH_ERROR:
+      return {
+        ...state,
+        error: action.payload,
+      };
+
+    case USER_LOGOUT:
+      return {
+        ...state,
+        auth: false,
+        user: null,
       };
 
     default:

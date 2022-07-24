@@ -8,6 +8,7 @@ export const PRODUCT_QTY_INCREMENT = "PRODUCT_QTY_INCREMENT";
 export const PRODUCT_QTY_DECREMENT = "PRODUCT_QTY_DECREMENT";
 
 export const getProduct = (id) => {
+  const url = process.env.NEXT_PUBLIC_PRODUCTS_FETCH_URL;
   return async (dispatch) => {
     try {
       const res = await axios({
