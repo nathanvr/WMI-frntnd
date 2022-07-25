@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Register from "./Register";
 import Login from "./Login";
+import Panel from "../pages/panel";
 import { Icon } from "@iconify/react";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../store/reducers/user.reducer";
@@ -42,7 +43,11 @@ const Navigation = () => {
         </>
       ) : user.email === "test1@gmail.com" ? (
         <>
-          <li>Panel</li>
+          <li className="navBar__panel">
+            <Link href={"/panel"}>
+              <a>Panel</a>
+            </Link>
+          </li>
           <li className="navBar__logout">
             <Link href="/">
               <a onClick={handleLogout}>Salir</a>
