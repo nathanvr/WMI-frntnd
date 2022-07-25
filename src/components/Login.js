@@ -35,13 +35,6 @@ const Login = () => {
       >
         <p>Hola mundo desde el modal de Login</p>
         <form className="form-register" onSubmit={handleSubmit}>
-          {/* {loading === true && ( */}
-          {/* <div className="loading" style={{ width: 400, zIndex: 1000 }}> */}
-          {/* <LoadingOverlay visible={visible} /> */}
-          {/* ...other content */}
-          {/* </div> */}
-          {/* )} */}
-
           <div className="box-register">
             <TextInput
               placeholder="example@example.com"

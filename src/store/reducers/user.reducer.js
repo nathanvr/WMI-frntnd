@@ -98,6 +98,7 @@ const userReducer = (state = initialState, action) => {
       };
 
     case USER_LOGOUT:
+      localStorage.removeItem("token");
       return {
         ...state,
         auth: false,

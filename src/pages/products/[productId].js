@@ -13,8 +13,15 @@ const ProductDetail = () => {
   const { loading, error, product, qty } = useSelector(
     (state) => state.productReducer
   );
+  // const { loading, error, qty } = useSelector((state) => state.productReducer);
+  // let product;
+
+  // Perform localStorage action
+  // product = useSelector((store) => store.productReducer.product);
 
   const { productId } = router.query;
+  console.log("id", productId);
+  console.log("product", product);
 
   useEffect(() => {
     dispatch(getProduct(productId));
