@@ -7,12 +7,12 @@ import ProductDetailCard from "../../components/productDetailCard";
 import { Icon } from "@iconify/react";
 import Head from "next/head";
 
-const ProductDetail = () => {
+const ProductDetail = ({ product }) => {
   const router = useRouter();
   const dispatch = useDispatch();
-  const { loading, error, product, qty } = useSelector(
-    (state) => state.productReducer
-  );
+  // const { loading, error, product, qty } = useSelector(
+  //   (state) => state.productReducer
+  // );
   // const { loading, error, qty } = useSelector((state) => state.productReducer);
   // let product;
 
@@ -23,13 +23,14 @@ const ProductDetail = () => {
   console.log("id", productId);
   console.log("product", product);
 
-  useEffect(() => {
-    dispatch(getProduct(productId));
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getProduct(productId));
+  // }, []);
 
-  if (error === true) {
-    return <p>Lo sentimos, ha ocurrido un error. {error}</p>;
-  }
+  // if (error === true) {
+  //   return <p>Lo sentimos, ha ocurrido un error. {error}</p>;
+  // }
+  const [qty, setQty] = useState(1);
 
   return (
     <>
@@ -37,23 +38,21 @@ const ProductDetail = () => {
         <title> App - Detail</title>
       </Head>
       <Layout>
-        {loading && <p>Loading...</p>}
+        {/* {loading && <p>Loading...</p>} */}
         <div className="pdc__productDetail">
           <ProductDetailCard product={product} />
         </div>
         <div className="pdc__itemOrder">
           <div className="pdc__itemOrder__qty">
             <p>Qty</p>
-            <button onClick={() => dispatch({ type: "PRODUCT_QTY_INCREMENT" })}>
+            <button onClick={() => setQty(qty + 1)}>
               {" "}
               <Icon icon="akar-icons:circle-plus" />
             </button>
             <p>{qty}</p>
 
             {qty > 0 ? (
-              <button
-                onClick={() => dispatch({ type: "PRODUCT_QTY_DECREMENT" })}
-              >
+              <button onClick={() => setQty(qty - 1)}>
                 {" "}
                 <Icon icon="akar-icons:circle-minus" />
               </button>
@@ -69,27 +68,35 @@ const ProductDetail = () => {
               {qty * product.data.priceUnit}
             </h3>
           </div>
-          <div className="pdc__itemOrder__button">
-            <button>Agregar a la canasta</button>
-          </div>
+          {qty > 0 ? (
+            <div className="pdc__itemOrder__button">
+              <button>Agregar a la canasta</button>
+            </div>
+          ) : (
+            <div className="pdc__itemOrder__button">
+              <button disabled={true}>Agregar a la canasta</button>
+            </div>
+          )}
         </div>
       </Layout>
     </>
   );
 };
 
-// export async function getServerSideProps(params) {
-//   const apiProduct = await fetch(`http://localhost:8080/product/${params.id}`, {
-//     method: "GET",
-//   });
-//   console.log(params);
+export async function getServerSideProps({ params }) {
+  const apiProduct = await fetch(
+    `http://localhost:8080/product/${params.productId}`,
+    {
+      method: "GET",
+    }
+  );
 
-//   const dataProduct = await apiProduct.json();
-//   return {
-//     props: {
-//       dataProduct,
-//     },
-//   };
-// }
+  const product = await apiProduct.json();
+  return {
+    props: {
+      product,
+    },
+  };
+}
 
 export default ProductDetail;

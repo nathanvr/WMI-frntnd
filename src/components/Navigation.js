@@ -41,7 +41,7 @@ const Navigation = () => {
             </Link>
           </li>
         </>
-      ) : user.email === "test1@gmail.com" ? (
+      ) : user?.email === "test1@gmail.com" ? (
         <>
           <li className="navBar__panel">
             <Link href={"/panel"}>
@@ -56,7 +56,7 @@ const Navigation = () => {
         </>
       ) : (
         <>
-          <li>{user.name}</li>
+          <li>{user?.name}</li>
           <li className="navBar__logout">
             <Link href="/">
               <a onClick={handleLogout}>Salir</a>

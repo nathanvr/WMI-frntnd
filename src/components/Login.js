@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { Modal, TextInput, PasswordInput, Alert } from "@mantine/core";
+import { Modal, TextInput, PasswordInput, Alert, Button } from "@mantine/core";
 import { login } from "../store/reducers/user.reducer";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -65,13 +65,13 @@ const Login = () => {
           )}
 
           <div className="form__button__continue">
-            <button
+            <Button
               className="form__button--continue"
               type="submit"
               //   onClick={() => setVisible((v) => !v)}
             >
               Ingresa
-            </button>
+            </Button>
           </div>
         </form>
       </Modal>
