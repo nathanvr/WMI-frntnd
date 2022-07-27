@@ -12,27 +12,66 @@ import {
   RadioGroup,
 } from "@mantine/core";
 import ImageUploading from "react-images-uploading";
+import axios from "axios";
 
 const CreateProduct = () => {
-  const [images, setImages] = React.useState([]);
-  const maxNumber = 1;
-  const onChange = (imageList, addUpdateIndex) => {
-    // data for submit
-    console.log(imageList, addUpdateIndex);
-    setImages(imageList);
-  };
-
   const [open, setOpen] = useState(false);
-  const handleSubmit = (event) => {
-    event.preventDefault();
-  };
 
+  const [images, setImages] = useState([]);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState(null);
   const [priceUnit, setPriceUnit] = useState(0);
   const [maxQty, setMaxQty] = useState(0);
   const [available, setAvailable] = useState(true);
+  const [file, setFile] = useState([]);
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const data = new FormData();
+    data.append("name", name);
+    data.append("description", description);
+    data.append("category", category);
+    data.append("priceUnit", priceUnit);
+    data.append("maxQty", maxQty);
+    data.append("available", available);
+    data.append("image", file);
+
+    // if (images) {
+    //   for (let i = 0; i < images.length; i++) {
+    //     data.append(`image_${i}`, images[i], images[i].name);
+    //   }
+    // }
+
+    try {
+      const token = localStorage.getItem("token");
+      const res = await axios.post(
+        "http://localhost:8080/product/create",
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      console.log("res de la peticion", res);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const maxNumber = 1;
+  const onChange = (imageList, addUpdateIndex) => {
+    // data for submit
+    console.log(imageList, addUpdateIndex);
+    setImages(imageList);
+    // imageList.map((item) => {
+    setFile(imageList[0].file);
+    // });
+  };
+  console.log("estos son los filess", file);
+  console.log("estos son los images", images);
 
   const categoryOptions = [
     { value: "vegetarian", label: "Vegetariana" },
