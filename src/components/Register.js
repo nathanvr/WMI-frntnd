@@ -92,89 +92,92 @@ const Register = () => {
           setOpen(false);
         }}
       >
-        <p>Hola mundo desde el modal de registro</p>
-        <form className="form-register" onSubmit={handleSubmit}>
-          <div className="box-register">
-            <TextInput
-              placeholder="Tu nombre"
-              label="Nombre"
-              name="name"
-              required
-              value={name}
-              onChange={(event) => (
-                setName(event.currentTarget.value),
-                setErrorValidate({ name: null })
+        <div className="rf__container">
+          <h2>Registro</h2>
+          <form className="form-register" onSubmit={handleSubmit}>
+            <div className="box-register">
+              <TextInput
+                placeholder="Tu nombre"
+                label="Nombre"
+                name="name"
+                required
+                value={name}
+                onChange={(event) => (
+                  setName(event.currentTarget.value),
+                  setErrorValidate({ name: null })
+                )}
+              />
+              {errorvalidate.name !== null && (
+                <Text color="red">{errorvalidate.name}</Text>
               )}
-            />
-            {errorvalidate.name !== null && (
-              <Text color="red">{errorvalidate.name}</Text>
-            )}
-          </div>
-          <div className="box-register">
-            <TextInput
-              placeholder="Tu apellido"
-              label="Apellido"
-              name="lastName"
-              required
-              value={lastname}
-              onChange={(event) => (
-                setLastName(event.currentTarget.value),
-                setErrorValidate({ lastname: null })
+            </div>
+            <div className="box-register">
+              <TextInput
+                placeholder="Tu apellido"
+                label="Apellido"
+                name="lastName"
+                required
+                value={lastname}
+                onChange={(event) => (
+                  setLastName(event.currentTarget.value),
+                  setErrorValidate({ lastname: null })
+                )}
+              />
+              {errorvalidate.lastname !== null && (
+                <Text color="red">{errorvalidate.lastname}</Text>
               )}
-            />
-            {errorvalidate.lastname !== null && (
-              <Text color="red">{errorvalidate.lastname}</Text>
-            )}
-          </div>
-          <div className="box-register">
-            <TextInput
-              placeholder="user@example.com"
-              label="Correo Electrónico"
-              name="email"
-              required
-              value={email}
-              onChange={(event) => (
-                setEmail(event.currentTarget.value),
-                setErrorValidate({ email: null })
+            </div>
+            <div className="box-register">
+              <TextInput
+                placeholder="user@example.com"
+                label="Correo Electrónico"
+                name="email"
+                required
+                value={email}
+                onChange={(event) => (
+                  setEmail(event.currentTarget.value),
+                  setErrorValidate({ email: null })
+                )}
+              />
+              {errorvalidate.email !== null && (
+                <Text color="red">{errorvalidate.email}</Text>
               )}
-            />
-            {errorvalidate.email !== null && (
-              <Text color="red">{errorvalidate.email}</Text>
-            )}
-            {error === "email already exist" && (
-              <Text color="red">
-                Ya existe una cuenta con el correo ingresado
-              </Text>
-            )}
-          </div>
+              {error === "email already exist" && (
+                <Text color="red">
+                  Ya existe una cuenta con el correo ingresado
+                </Text>
+              )}
+            </div>
 
-          <div className="box-register">
-            <PasswordInput
-              placeholder="Contraseña"
-              label="Contraseña"
-              name="password"
-              required
-              value={password}
-              description="La contraseña debe tener mínimo 8 caracteres, una miniscula, una mayuscula, un numero o un caracter especial"
-              onChange={(event) => (
-                setPassword(event.currentTarget.value),
-                setErrorValidate({ password: null })
+            <div className="box-register">
+              <PasswordInput
+                placeholder="Contraseña"
+                label="Contraseña"
+                name="password"
+                required
+                value={password}
+                description="La contraseña debe tener mínimo 8 caracteres, una miniscula, una mayuscula, un numero o un caracter especial"
+                onChange={(event) => (
+                  setPassword(event.currentTarget.value),
+                  setErrorValidate({ password: null })
+                )}
+              />
+              {errorvalidate.password !== null && (
+                <Text color="red">{errorvalidate.password}</Text>
               )}
-            />
-            {errorvalidate.password !== null && (
-              <Text color="red">{errorvalidate.password}</Text>
-            )}
-          </div>
-          <div className="form__button__continue">
-            <button
-              className="form__button--continue"
-              type="submit"
-              // onClick={() => setVisible((v) => !v)}
-            >
-              Registrarse
-            </button>
-          </div>
-        </form>
+            </div>
+            <div className="form__button__continue">
+              <Button
+                className="form__button--continue"
+                color="orange"
+                type="submit"
+                onClick={() => setOpen((v) => !v)}
+              >
+                Registrarse
+              </Button>
+            </div>
+          </form>
+        </div>
       </Modal>
     </div>
   );

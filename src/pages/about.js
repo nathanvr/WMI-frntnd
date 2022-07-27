@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 
 const About = () => {
   const { auth, user, error } = useSelector((state) => state.userReducer);
-  console.log(user);
+  // console.log(user);
   return (
     <>
       <Head>

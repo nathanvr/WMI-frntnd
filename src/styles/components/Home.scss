@@ -1,0 +1,11 @@
+.home__container {
+  margin: 30px;
+  display: flex;
+  flex-direction: column;
+
+  .home__container__products {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+}

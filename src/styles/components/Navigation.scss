@@ -1,11 +1,12 @@
 .navBar {
   display: flex;
   justify-content: flex-end;
+  background-color: #fe724c;
 
   li {
     padding: 10px;
     a {
-      color: var(--typo);
+      color: white;
     }
   }
 

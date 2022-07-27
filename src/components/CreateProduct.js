@@ -55,23 +55,23 @@ const CreateProduct = () => {
           },
         }
       );
-      console.log("res de la peticion", res);
+      //   console.log("res de la peticion", res);
     } catch (error) {
-      console.log(error);
+      //   console.log(error);
     }
   }
 
   const maxNumber = 1;
   const onChange = (imageList, addUpdateIndex) => {
     // data for submit
-    console.log(imageList, addUpdateIndex);
+    // console.log(imageList, addUpdateIndex);
     setImages(imageList);
     // imageList.map((item) => {
     setFile(imageList[0].file);
     // });
   };
-  console.log("estos son los filess", file);
-  console.log("estos son los images", images);
+  //   console.log("estos son los filess", file);
+  //   console.log("estos son los images", images);
 
   const categoryOptions = [
     { value: "vegetarian", label: "Vegetariana" },
@@ -84,15 +84,20 @@ const CreateProduct = () => {
   ];
 
   return (
-    <div>
-      <button onClick={() => setOpen(true)}>Nuevo Producto</button>
+    <div className="modal__product">
+      <button
+        className="modal__product__openmodal"
+        onClick={() => setOpen(true)}
+      >
+        Nuevo Producto
+      </button>
       <Modal
         opened={open}
         onClose={() => {
           setOpen(false);
         }}
       >
-        <h3>Nuevo Producto</h3>
+        <h2>Nuevo Producto</h2>
         <form className="form__createProduct" onSubmit={handleSubmit}>
           <div className="form__createProduct__img">
             <ImageUploading

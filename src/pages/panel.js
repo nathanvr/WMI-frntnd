@@ -1,18 +1,18 @@
 import React from "react";
 import Layout from "../components/Layout";
 import Head from "next/head";
-import { useSelector } from "react-redux";
-import Link from "next/link";
 import CreateProduct from "../components/CreateProduct";
 const Panel = () => {
   return (
     <>
       <Head>
-        <title> App - About</title>
+        <title> App - Admin Panel</title>
       </Head>
       <Layout>
-        <h1>Panel</h1>
-        <CreateProduct />
+        <div className="adminpanel__container">
+          <h1>Panel</h1>
+          <CreateProduct />
+        </div>
       </Layout>
     </>
   );

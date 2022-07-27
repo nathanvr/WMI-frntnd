@@ -26,20 +26,25 @@ export default function Index() {
         <title> App - Home</title>
       </Head>
       <Layout>
-        <h1> Home </h1>
-        {loading && <p>Loading...</p>}
-
-        {products.map((product, index) => (
-          <Link
-            key={product._id}
-            href="/products/[productId]"
-            as={`/products/${product._id}`}
-          >
-            <a>
-              <ProductCard product={product} />
-            </a>
-          </Link>
-        ))}
+        <div className="home__container">
+          <div className="home__container__title">
+            <h1> Home </h1>
+          </div>
+          {loading && <p>Loading...</p>}
+          <div className="home__container__products">
+            {products.map((product, index) => (
+              <Link
+                key={product._id}
+                href="/products/[productId]"
+                as={`/products/${product._id}`}
+              >
+                <a>
+                  <ProductCard product={product} />
+                </a>
+              </Link>
+            ))}
+          </div>
+        </div>
       </Layout>
     </>
   );

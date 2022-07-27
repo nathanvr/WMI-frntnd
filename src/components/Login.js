@@ -33,47 +33,50 @@ const Login = () => {
           setOpen(false);
         }}
       >
-        <p>Hola mundo desde el modal de Login</p>
-        <form className="form-register" onSubmit={handleSubmit}>
-          <div className="box-register">
-            <TextInput
-              placeholder="example@example.com"
-              label="Correo Electrónico"
-              name="email"
-              required
-              value={user.email}
-              onChange={handleChange}
-              error={error !== null && true}
-            />
-          </div>
+        <div className="rf__container">
+          <h2>Ingreso</h2>
+          <form className="form-register" onSubmit={handleSubmit}>
+            <div className="box-register">
+              <TextInput
+                placeholder="example@example.com"
+                label="Correo Electrónico"
+                name="email"
+                required
+                value={user.email}
+                onChange={handleChange}
+                error={error !== null && true}
+              />
+            </div>
 
-          <div className="box-register">
-            <PasswordInput
-              placeholder="Contraseña"
-              label="Contraseña"
-              name="password"
-              required
-              value={user.password}
-              onChange={handleChange}
-              error={error !== null && true}
-            />
-          </div>
-          {error !== null && (
-            <Alert title="Error!" color="red">
-              Usuario o contraseña incorrectos
-            </Alert>
-          )}
+            <div className="box-register">
+              <PasswordInput
+                placeholder="Contraseña"
+                label="Contraseña"
+                name="password"
+                required
+                value={user.password}
+                onChange={handleChange}
+                error={error !== null && true}
+              />
+            </div>
+            {error !== null && (
+              <Alert title="Error!" color="red">
+                Usuario o contraseña incorrectos
+              </Alert>
+            )}
 
-          <div className="form__button__continue">
-            <Button
-              className="form__button--continue"
-              type="submit"
-              //   onClick={() => setVisible((v) => !v)}
-            >
-              Ingresa
-            </Button>
-          </div>
-        </form>
+            <div className="form__button__continue">
+              <Button
+                color="orange"
+                className="form__button--continue"
+                type="submit"
+                onClick={() => setOpen((v) => !v)}
+              >
+                Ingresa
+              </Button>
+            </div>
+          </form>
+        </div>
       </Modal>
     </div>
   );

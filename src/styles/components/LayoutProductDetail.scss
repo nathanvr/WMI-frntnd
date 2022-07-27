@@ -1,0 +1,41 @@
+.pdc {
+  display: flex;
+  flex-direction: column;
+  background-color: whitesmoke;
+
+  margin: auto;
+  margin-bottom: 50px;
+
+  width: 800px;
+
+  .pdc__itemOrder {
+    display: flex;
+    padding: 30px;
+    justify-content: space-evenly;
+  }
+
+  .pdc__itemOrder__qty {
+    display: flex;
+    flex-direction: row-reverse;
+
+    button {
+      background-color: whitesmoke;
+      border: none;
+      color: #fe724c;
+      margin: 0 20px;
+    }
+  }
+  .pdc__itemOrder__amount {
+    color: #fe724c;
+  }
+  .pdc__itemOrder__button {
+    button {
+      background-color: #fe724c;
+      height: 30px;
+      padding: 5px;
+      color: white;
+      border: none;
+      border-radius: 30px;
+    }
+  }
+}

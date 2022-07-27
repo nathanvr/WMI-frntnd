@@ -6,6 +6,7 @@ import Layout from "../../components/Layout";
 import ProductDetailCard from "../../components/productDetailCard";
 import { Icon } from "@iconify/react";
 import Head from "next/head";
+import { Button } from "@mantine/core";
 
 const ProductDetail = ({ product }) => {
   const router = useRouter();
@@ -20,8 +21,8 @@ const ProductDetail = ({ product }) => {
   // product = useSelector((store) => store.productReducer.product);
 
   const { productId } = router.query;
-  console.log("id", productId);
-  console.log("product", product);
+  // console.log("id", productId);
+  // console.log("product", product);
 
   // useEffect(() => {
   //   dispatch(getProduct(productId));
@@ -38,45 +39,43 @@ const ProductDetail = ({ product }) => {
         <title> App - Detail</title>
       </Head>
       <Layout>
-        {/* {loading && <p>Loading...</p>} */}
-        <div className="pdc__productDetail">
-          <ProductDetailCard product={product} />
-        </div>
-        <div className="pdc__itemOrder">
-          <div className="pdc__itemOrder__qty">
-            <p>Qty</p>
-            <button onClick={() => setQty(qty + 1)}>
-              {" "}
-              <Icon icon="akar-icons:circle-plus" />
-            </button>
-            <p>{qty}</p>
+        <div className="pdc">
+          <div className="pdc__productDetail">
+            <ProductDetailCard product={product} />
+          </div>
+          <div className="pdc__itemOrder">
+            <div className="pdc__itemOrder__qty">
+              <button onClick={() => setQty(qty + 1)}>
+                {" "}
+                <Icon icon="akar-icons:circle-plus" />
+              </button>
+              <p>{qty}</p>
 
+              {qty > 0 ? (
+                <button onClick={() => setQty(qty - 1)}>
+                  {" "}
+                  <Icon icon="akar-icons:circle-minus" />
+                </button>
+              ) : (
+                <button disabled={true}>
+                  {" "}
+                  <Icon icon="akar-icons:circle-minus" />
+                </button>
+              )}
+            </div>
+            <div className="pdc__itemOrder__amount">
+              <h3>$ {qty * product.data.priceUnit}</h3>
+            </div>
             {qty > 0 ? (
-              <button onClick={() => setQty(qty - 1)}>
-                {" "}
-                <Icon icon="akar-icons:circle-minus" />
-              </button>
+              <div className="pdc__itemOrder__button">
+                <button>Agregar a la canasta</button>
+              </div>
             ) : (
-              <button disabled={true}>
-                {" "}
-                <Icon icon="akar-icons:circle-minus" />
-              </button>
+              <div className="pdc__itemOrder__button">
+                <button disabled={true}>Agregar a la canasta</button>
+              </div>
             )}
           </div>
-          <div>
-            <h3 className="pdc__itemOrder__amount">
-              {qty * product.data.priceUnit}
-            </h3>
-          </div>
-          {qty > 0 ? (
-            <div className="pdc__itemOrder__button">
-              <button>Agregar a la canasta</button>
-            </div>
-          ) : (
-            <div className="pdc__itemOrder__button">
-              <button disabled={true}>Agregar a la canasta</button>
-            </div>
-          )}
         </div>
       </Layout>
     </>

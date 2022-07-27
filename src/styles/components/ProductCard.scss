@@ -1,0 +1,29 @@
+.pc__container {
+  display: flex;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  flex-direction: column;
+  width: 300px;
+  height: 350px;
+  background-color: whitesmoke;
+  border-radius: 10px;
+
+  h5 {
+    width: 55px;
+    position: absolute;
+    z-index: 100;
+    margin: 10px;
+    padding: 3px;
+
+    background-color: #fe724c;
+    color: white;
+    border-radius: 10px;
+  }
+
+  .pc__container__detail {
+    padding: 10px;
+    p {
+      color: gray;
+    }
+  }
+}

@@ -1,0 +1,20 @@
+.pdc__container {
+  display: flex;
+  background-color: whitesmoke;
+  padding: 30px;
+  margin: auto;
+  width: 800px;
+
+  .pdc__container__img {
+    img {
+      border-radius: 30px;
+      height: 200px;
+    }
+  }
+  .pdc__container__detail {
+    margin: 30px;
+  }
+  h3 {
+    color: #fe724c;
+  }
+}
