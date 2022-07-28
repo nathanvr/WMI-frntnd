@@ -13,7 +13,7 @@ export const getProduct = (id) => {
     try {
       const res = await axios({
         method: "GET",
-        baseURL: `http://localhost:8080/product/${id}`,
+        baseURL: `https://wmi-col.herokuapp.com/product/${id}`,
       });
       dispatch({ type: PRODUCT_SUCCESS, payload: res.data });
     } catch (error) {

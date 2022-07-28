@@ -10,6 +10,7 @@ import {
   Image,
   Radio,
   RadioGroup,
+  Button,
 } from "@mantine/core";
 import ImageUploading from "react-images-uploading";
 import axios from "axios";
@@ -46,7 +47,7 @@ const CreateProduct = () => {
     try {
       const token = localStorage.getItem("token");
       const res = await axios.post(
-        "http://localhost:8080/product/create",
+        "https://wmi-col.herokuapp.com/product/create",
         data,
         {
           headers: {
@@ -218,7 +219,9 @@ const CreateProduct = () => {
             </RadioGroup>
           </div>
 
-          <button>Crear</button>
+          <Button color="orange" type="submit" onClick={() => setOpen(false)}>
+            Crear
+          </Button>
         </form>
       </Modal>
     </div>
