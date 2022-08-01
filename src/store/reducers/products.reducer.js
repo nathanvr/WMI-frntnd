@@ -11,7 +11,7 @@ export const getProducts = () => {
       dispatch({ type: PRODUCTS_LOADING, payload: true });
       const dataProducts = await axios({
         method: "GET",
-        baseURL: `https://wmi-col.herokuapp.com/product`,
+        baseURL: `http://localhost:8080/product`,
       });
       dispatch({ type: PRODUCTS_SUCCESS, payload: dataProducts.data.data });
     } catch (error) {

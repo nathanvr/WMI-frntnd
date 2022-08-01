@@ -47,7 +47,7 @@ const CreateProduct = () => {
     try {
       const token = localStorage.getItem("token");
       const res = await axios.post(
-        "https://wmi-col.herokuapp.com/product/create",
+        "http://localhost:8080/product/create",
         data,
         {
           headers: {

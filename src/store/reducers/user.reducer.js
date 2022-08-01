@@ -15,7 +15,7 @@ export const getUser = () => {
     try {
       const res = await axios({
         method: "GET",
-        baseURL: "https://wmi-col.herokuapp.com/user/getid",
+        baseURL: "http://localhost:8080/user/getid",
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -34,7 +34,7 @@ export const register = (registerState) => {
   return async (dispatch) => {
     try {
       const res = await axios.post(
-        "https://wmi-col.herokuapp.com/user/signup",
+        "http://localhost:8080/user/signup",
         registerState
       );
       //   console.log(res.data.data.token);
@@ -51,7 +51,7 @@ export const login = (loginState) => {
   return async (dispatch) => {
     try {
       const res = await axios.post(
-        "https://wmi-col.herokuapp.com/user/signin",
+        "http://localhost:8080/user/signin",
         loginState
       );
       localStorage.setItem("token", res.data.data);

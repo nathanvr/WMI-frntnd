@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { getProduct } from "../../store/reducers/product.reducer";
 import Layout from "../../components/Layout";
@@ -7,31 +6,23 @@ import ProductDetailCard from "../../components/productDetailCard";
 import { Icon } from "@iconify/react";
 import Head from "next/head";
 import { Button } from "@mantine/core";
+import { addItem } from "../../store/reducers/shopping.reducer";
 
 const ProductDetail = ({ product }) => {
-  const router = useRouter();
   const dispatch = useDispatch();
-  // const { loading, error, product, qty } = useSelector(
-  //   (state) => state.productReducer
-  // );
-  // const { loading, error, qty } = useSelector((state) => state.productReducer);
-  // let product;
-
-  // Perform localStorage action
-  // product = useSelector((store) => store.productReducer.product);
-
-  const { productId } = router.query;
-  // console.log("id", productId);
-  // console.log("product", product);
-
-  // useEffect(() => {
-  //   dispatch(getProduct(productId));
-  // }, []);
-
-  // if (error === true) {
-  //   return <p>Lo sentimos, ha ocurrido un error. {error}</p>;
-  // }
+  const { cart } = useSelector((state) => state.shoppingReducer);
+  console.log(cart);
   const [qty, setQty] = useState(1);
+
+  const info = {
+    total: qty * product.data.priceUnit,
+    qty: qty,
+    productId: product.data._id,
+  };
+
+  const handleClick = () => {
+    dispatch(addItem(info));
+  };
 
   return (
     <>
@@ -68,7 +59,7 @@ const ProductDetail = ({ product }) => {
             </div>
             {qty > 0 ? (
               <div className="pdc__itemOrder__button">
-                <button>Agregar a la canasta</button>
+                <button onClick={handleClick}>Agregar a la canasta</button>
               </div>
             ) : (
               <div className="pdc__itemOrder__button">
@@ -84,7 +75,7 @@ const ProductDetail = ({ product }) => {
 
 export async function getServerSideProps({ params }) {
   const apiProduct = await fetch(
-    `https://wmi-col.herokuapp.com/product/${params.productId}`,
+    `http://localhost:8080/product/${params.productId}`,
     {
       method: "GET",
     }

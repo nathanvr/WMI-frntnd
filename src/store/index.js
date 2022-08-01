@@ -7,6 +7,7 @@ import thunk from "redux-thunk";
 import productsReducer from "./reducers/products.reducer";
 import productReducer from "./reducers/product.reducer";
 import userReducer from "./reducers/user.reducer";
+import shoppingReducer from "./reducers/shopping.reducer";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { createWrapper } from "next-redux-wrapper";
 
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   productsReducer,
   productReducer,
   userReducer,
+  shoppingReducer,
 });
 
 export const store = createStore(
