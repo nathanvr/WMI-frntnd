@@ -4,6 +4,10 @@ import { Icon } from "@iconify/react";
 
 const Cart = ({ products, totalProducts }) => {
   const [open, setOpen] = useState(false);
+  const totalAmount = products
+    .map((item) => item.total)
+    .reduce((prev, current) => prev + current, 0);
+
   return (
     <>
       <a onClick={() => setOpen(true)}>
@@ -22,13 +26,20 @@ const Cart = ({ products, totalProducts }) => {
           {products.map((product) => (
             <div key={product.product._id} className="cartContainer__product">
               <div className="cartContainer__product__title">
-                <h3>{product.product.name}</h3>
+                <img
+                  src={product.product.image.url}
+                  alt={product.product.name}
+                ></img>
+                <p>{product.product.name}</p>
+                <p>{product.product.priceUnit}</p>
+                <p>{product.qty}</p>
+                <p>{product.total}</p>
               </div>
             </div>
           ))}
         </div>
         <div className="payment">
-          <Button> Pagar </Button>
+          <Button> Pagar ${totalAmount} </Button>
         </div>
       </Modal>
     </>
