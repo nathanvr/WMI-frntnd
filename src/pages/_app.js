@@ -2,7 +2,7 @@ import "../styles/globals.scss";
 import { store, wrapper } from "../store/index";
 import { Provider } from "react-redux";
 import { getUser } from "../store/reducers/user.reducer";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
 function MyApp({ Component, pageProps }) {

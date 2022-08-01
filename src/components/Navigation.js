@@ -2,15 +2,20 @@ import Link from "next/link";
 import Register from "./Register";
 import Login from "./Login";
 import Panel from "../pages/panel";
+import Cart from "./cart";
 import { Icon } from "@iconify/react";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../store/reducers/user.reducer";
 
 const Navigation = () => {
-  if (typeof window !== "undefined") {
-    // Perform localStorage action
-  }
   const { auth, user, error } = useSelector((state) => state.userReducer);
+  const { cart } = useSelector((state) => state.shoppingReducer);
+  console.log(cart);
+  const totalProducts = cart
+    .map((item) => item.qty)
+    .reduce((prev, current) => prev + current, 0);
+  // console.log("productos", totalProducts);
+
   const dispatch = useDispatch();
   const handleLogout = () => {
     dispatch(logout());
@@ -34,11 +39,9 @@ const Navigation = () => {
             <Login />
           </li>
           <li className="navBar__cart">
-            <Link href={"/cart"}>
-              <a>
-                <Icon icon={"carbon:shopping-cart"} />
-              </a>
-            </Link>
+            {/* <Link href={"/cart"}> */}
+            <Cart totalProducts={totalProducts} products={cart}></Cart>
+            {/* </Link> */}
           </li>
         </>
       ) : user?.email === "test1@gmail.com" ? (
@@ -66,6 +69,7 @@ const Navigation = () => {
             <Link href={"/cart"}>
               <a>
                 <Icon icon={"carbon:shopping-cart"} />
+                <p>({totalProducts})</p>
               </a>
             </Link>
           </li>

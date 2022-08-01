@@ -10,14 +10,12 @@ import { addItem } from "../../store/reducers/shopping.reducer";
 
 const ProductDetail = ({ product }) => {
   const dispatch = useDispatch();
-  const { cart } = useSelector((state) => state.shoppingReducer);
-  console.log(cart);
   const [qty, setQty] = useState(1);
 
   const info = {
     total: qty * product.data.priceUnit,
     qty: qty,
-    productId: product.data._id,
+    product: product.data,
   };
 
   const handleClick = () => {
