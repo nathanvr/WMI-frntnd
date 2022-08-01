@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Modal, Alert, Button } from "@mantine/core";
 import { Icon } from "@iconify/react";
+import { Image } from "@mantine/core";
 
 const Cart = ({ products, totalProducts }) => {
   const [open, setOpen] = useState(false);
@@ -26,12 +27,13 @@ const Cart = ({ products, totalProducts }) => {
           {products.map((product) => (
             <div key={product.product._id} className="cartContainer__product">
               <div className="cartContainer__product__title">
-                <img
+                <Image
                   src={product.product.image.url}
                   alt={product.product.name}
-                ></img>
-                <p>{product.product.name}</p>
-                <p>{product.product.priceUnit}</p>
+                />
+                <p>
+                  {product.product.name}. ${product.product.priceUnit}
+                </p>
                 <p>{product.qty}</p>
                 <p>{product.total}</p>
               </div>
