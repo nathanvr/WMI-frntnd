@@ -10,7 +10,7 @@ import { logout } from "../store/reducers/user.reducer";
 const Navigation = () => {
   const { auth, user, error } = useSelector((state) => state.userReducer);
   const { cart } = useSelector((state) => state.shoppingReducer);
-  console.log(cart);
+  console.log("Carrito ", cart);
   const totalProducts = cart
     .map((item) => item.qty)
     .reduce((prev, current) => prev + current, 0);

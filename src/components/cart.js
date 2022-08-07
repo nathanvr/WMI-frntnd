@@ -26,22 +26,28 @@ const Cart = ({ products, totalProducts }) => {
         <div className="cartContainer">
           {products.map((product) => (
             <div key={product.product._id} className="cartContainer__product">
-              <div className="cartContainer__product__title">
-                <Image
-                  src={product.product.image.url}
-                  alt={product.product.name}
-                />
-                <p>
+              <Image
+                radius="md"
+                className="cartContainer__product__img"
+                src={product.product.image.url}
+                alt={product.product.name}
+              />
+              <div className="cartContainer__product__info">
+                <p className="cartContainer__product__info__description">
                   {product.product.name}. ${product.product.priceUnit}
                 </p>
-                <p>{product.qty}</p>
-                <p>{product.total}</p>
+                <p className="cartContainer__product__info__qty">
+                  Cantidad: {product.qty}
+                </p>
+                <p className="cartContainer__product__info__subtotal">
+                  Subtotal: ${product.total}
+                </p>
               </div>
             </div>
           ))}
         </div>
         <div className="payment">
-          <Button> Pagar ${totalAmount} </Button>
+          <Button type="submit"> Pagar ${totalAmount} </Button>
         </div>
       </Modal>
     </>
