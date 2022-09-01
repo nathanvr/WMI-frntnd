@@ -1,0 +1,30 @@
+.modal__cart {
+  margin-right: 0;
+}
+
+.cartContainer {
+  display: flex;
+  flex-direction: column;
+  .cartContainer__product {
+    display: flex;
+    margin: 5px;
+    border: 1px solid lightgray;
+    padding: 5px;
+    background-color: whitesmoke;
+    border-radius: 10px;
+
+    .cartContainer__product__img {
+      display: flex;
+      border-radius: 10px;
+      align-items: center;
+    }
+    .cartContainer__product__info {
+      margin: 5px;
+      width: 600px;
+
+      .cartContainer__product__info__description {
+        color: orangered;
+      }
+    }
+  }
+}

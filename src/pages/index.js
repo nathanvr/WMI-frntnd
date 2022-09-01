@@ -5,8 +5,11 @@ import { useState, useEffect } from "react";
 import { getProducts } from "../store/reducers/products.reducer";
 import ProductCard from "../components/ProductCard";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { Modal } from "@mantine/core";
 
 export default function Index() {
+  const router = useRouter;
   const dispatch = useDispatch();
   const { loading, error, products } = useSelector(
     (state) => state.productsReducer
@@ -35,8 +38,10 @@ export default function Index() {
             {products.map((product, index) => (
               <Link
                 key={product._id}
-                href="/products/[productId]"
-                as={`/products/${product._id}`}
+                href={{
+                  pathname: `/products/${product._id}`,
+                  // query: { productId: product._id },
+                }}
               >
                 <a>
                   <ProductCard product={product} />
