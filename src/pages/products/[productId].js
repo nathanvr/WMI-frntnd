@@ -73,7 +73,7 @@ const ProductDetail = ({ product }) => {
 
 export async function getServerSideProps({ params }) {
   const apiProduct = await fetch(
-    `http://localhost:8080/product/${params.productId}`,
+    `https://wmi-col.herokuapp.com/product/${params.productId}`,
     {
       method: "GET",
     }

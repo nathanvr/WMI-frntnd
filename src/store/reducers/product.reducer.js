@@ -8,12 +8,13 @@ export const PRODUCT_QTY_INCREMENT = "PRODUCT_QTY_INCREMENT";
 export const PRODUCT_QTY_DECREMENT = "PRODUCT_QTY_DECREMENT";
 
 export const getProduct = (id) => {
-  const url = process.env.NEXT_PUBLIC_PRODUCTS_FETCH_URL;
+  const url = process.env.PRODUCTS_FETCH_URL;
+  console.log(url);
   return async (dispatch) => {
     try {
       const res = await axios({
         method: "GET",
-        baseURL: `http://localhost:8080/product/${id}`,
+        baseURL: `https://wmi-col.herokuapp.com/product/${id}`,
       });
       dispatch({ type: PRODUCT_SUCCESS, payload: res.data });
     } catch (error) {

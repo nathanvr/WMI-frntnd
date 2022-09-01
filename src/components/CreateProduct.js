@@ -27,6 +27,7 @@ const CreateProduct = () => {
   const [available, setAvailable] = useState(true);
   const [file, setFile] = useState([]);
 
+  const urlFectch = process.env.PRODUCTS_FETCH_URL;
   async function handleSubmit(e) {
     e.preventDefault();
     const data = new FormData();
@@ -38,16 +39,10 @@ const CreateProduct = () => {
     data.append("available", available);
     data.append("image", file);
 
-    // if (images) {
-    //   for (let i = 0; i < images.length; i++) {
-    //     data.append(`image_${i}`, images[i], images[i].name);
-    //   }
-    // }
-
     try {
       const token = localStorage.getItem("token");
       const res = await axios.post(
-        "http://localhost:8080/product/create",
+        "https://wmi-col.herokuapp.com/product/create",
         data,
         {
           headers: {
@@ -56,23 +51,14 @@ const CreateProduct = () => {
           },
         }
       );
-      //   console.log("res de la peticion", res);
-    } catch (error) {
-      //   console.log(error);
-    }
+    } catch (error) {}
   }
 
   const maxNumber = 1;
   const onChange = (imageList, addUpdateIndex) => {
-    // data for submit
-    // console.log(imageList, addUpdateIndex);
     setImages(imageList);
-    // imageList.map((item) => {
     setFile(imageList[0].file);
-    // });
   };
-  //   console.log("estos son los filess", file);
-  //   console.log("estos son los images", images);
 
   const categoryOptions = [
     { value: "vegetarian", label: "Vegetariana" },
