@@ -29,7 +29,6 @@ export default function Index() {
         <title> App - Home</title>
       </Head>
       <Layout>
-        <Modal></Modal>
         <div className="home__container">
           <div className="home__container__title">
             <h1> Home </h1>
